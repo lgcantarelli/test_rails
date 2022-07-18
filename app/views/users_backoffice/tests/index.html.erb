@@ -1,0 +1,48 @@
+<h1>Avaliações</h1>
+ 
+<div class="row">
+  <div class="animated flipInY col-lg-12 col-md-3 col-sm-6 col-xs-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Avaliação</th>
+          <th scope="col">Respondida em</th>
+          <th scope="col">Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tests.each do |test| %>
+          <th scope="row"> <%= test.id  %> </th>
+          <td>
+            <% if @current_user.test_ids.include?(test.id) && @grades.keys.include?(test.id) %>
+              <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grades[test.id] >= 7 ? 'btn btn-success w-50' : 'btn btn-danger w-50'}" %>
+            <% else %>
+              <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary w-50' %>
+            <% end %>
+          </td>
+          <td>
+            <% if @test_submission_time.keys.include?(test.id) %>
+              <%= date_formatter(l @test_submission_time[test.id]) %>
+            <% else %>
+              -
+            <% end %>
+          </td>
+          <td>
+            <% if @grades.keys.include?(test.id) %>
+              <p class="<%= @grades[test.id] >= 7 ? 'btn btn-outline-success w-25 cursor-pointer' : 'btn btn-outline-danger w-25' %>" style="cursor: default">
+                <%= @grades[test.id].round(2) %>
+              </p>
+           
+              <% else %>
+                -
+            <% end %>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
+

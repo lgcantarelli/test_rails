@@ -1,0 +1,29 @@
+<div>
+  <h3> <%= @test.name %> </h3>
+</div>
+
+<%= form_with url: users_backoffice_path, local: true do |form| %>
+  <% @questions.each_with_index do |question, index| %>
+    <div class="card w-75">
+      <h5 class="card-header"> Questão <%= index + 1 %> </h5>
+      <div class="card-body">
+        <h5 class="card-title"><%= question.description %></h5>
+        <hr>
+        <ul style="list-style:none;">
+        <%= form.fields_for :answers do |answer| %>
+            <% question.answers.each do |answer|%>
+              <li> 
+                <%= radio_button_tag "form_questions[#{question.id}][]", answer.id, (@myCrazyHash.values.include?(answer.id)), disabled: true %>
+                <span class="card-text"><%= answer.description %></span>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to 'Voltar para Avaliações', users_backoffice_tests_path, class:"btn btn-primary" %>
+
+

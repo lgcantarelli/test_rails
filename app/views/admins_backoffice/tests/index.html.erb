@@ -1,0 +1,87 @@
+<h1>Listando Avaliações</h1>
+<div class="table-responsive">
+<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+    <div class="dataTables_length" id="dataTable_length">
+      <label>
+        Show 
+        <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        entries
+      </label>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div>
+  </div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+  <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+    <thead>
+      <tr role="row">
+        <th 
+          class="sorting sorting_asc" 
+          tabindex="0" 
+          aria-controls="dataTable" 
+          rowspan="1" colspan="1" 
+          aria-sort="ascending" a
+          ria-label="Name: activate to sort column descending" 
+          style="width: 10%;">
+          #
+        </th>
+        <th 
+          class="sorting" 
+          tabindex="0" aria-controls="dataTable" r
+          owspan="1" 
+          colspan="1" aria-label="Position: activate to sort column ascending" 
+          style="width: 80%;">
+          Avaliações
+        </th>
+        <th 
+          class="sorting" 
+          tabindex="0" 
+          aria-controls="dataTable" 
+          rowspan="1" 
+          colspan="1" 
+          aria-label="Office: activate to sort column ascending"
+          style="width: 10%;">
+          <%= link_to new_admins_backoffice_test_path, class: "btn btn-success btn-circle" do %>
+          <i class="fa fa-plus"></i>
+          <% end%>
+        </th>
+       
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th rowspan="1" colspan="1">#</th>
+        <th rowspan="1" colspan="1">Avaliações</th>
+        <th rowspan="1" colspan="1"></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% @tests.each do |test| %>
+        <tr class="odd">
+          <td class="sorting_1"> <%= test.id %> </td>
+          <td> <%= test.name %></td>
+          <td> 
+            <%= link_to edit_admins_backoffice_test_path(test), class: "btn btn-primary btn-circle" do %>
+              <i class="fa fa-edit"></i>
+            <% end%>
+            <%= link_to admins_backoffice_test_path(test), 
+              method: :delete, 
+              class:"btn btn-danger btn-circle", 
+              data: { confirm: t('messages.confirm_with', item: test.name) } do %>
+              <i class="fa fa-minus"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</div>

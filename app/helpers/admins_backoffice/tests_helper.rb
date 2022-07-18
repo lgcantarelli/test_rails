@@ -1,0 +1,2 @@
+module AdminsBackoffice::TestsHelper
+end
