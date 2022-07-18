@@ -12,7 +12,6 @@
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
-        entries
       </label>
     </div>
   </div>
@@ -67,7 +66,7 @@
     </tfoot>
     <tbody>
       <% @tests.each do |test| %>
-        <tr class="table">
+        <tr class="odd">
           <td class="sorting_1"> <%= test.id %> </td>
           <td> <%= test.name %></td>
           <td> 

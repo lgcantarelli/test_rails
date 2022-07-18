@@ -1,6 +1,5 @@
 class AdminsBackoffice::SubjectsController < AdminsBackofficeController
   before_action :set_subject, only: [:edit, :update, :destroy]
-  # before_action :params_subject, only: [:update]
   
   def index
     respond_to do |format|

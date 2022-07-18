@@ -1,8 +1,7 @@
 class AdminsBackoffice::AdminsController < AdminsBackofficeController
   before_action :verify_password, only: [:update]
   before_action :set_admin, only: [:edit, :update, :destroy]
-  # before_action :params_admin, only: [:update]
-  
+
   def index
     @admins = Admin.all.page(params[:page]).per(5)
   end
