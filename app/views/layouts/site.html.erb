@@ -1,97 +1,95 @@
 
 <!DOCTYPE html>
-<html >
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-     <title>TimeToAnswer</title>
+    <title>TimeToAnswer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application' %>
     <%= stylesheet_link_tag    'site' %>
-
-
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
   <body>
 
     <div class="container">
-      <nav class="navbar navbar-defaul card ">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <%= link_to 'Time to Answer', root_path, class:"navbar-brand" %>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-            </ul>
 
-            <%= form_with(url: site_search_path, local: true, method: :get, class:"navbar-form navbar-left") do |form| %>
-                <div class="form-group">
-                  <%= form.text_field :term, class:"form-control", placeholder:"digite algo..." %>
-                </div>
-                <button type="submit" class="btn btn-default">Pesquisar</button>
-            <% end %>
-
-            <ul class="nav navbar-nav navbar-right">
-              <% unless user_signed_in? %>
-                <li><%= link_to 'Entrar', new_user_session_path %></li>
-                <li><%= link_to 'Cadastrar-se', new_user_registration_path %></li>
-              <% else %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <%= link_to users_backoffice_welcome_index_path do %>
-                      <i class="fa fa-user fa-fw"></i> Perfil
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                      <i class="fa fa-sign-out fa-fw"></i> Sair
-                    <% end %>
-                  </li>
-                </ul>
-              </li>
-              <% end %>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e7e7e7;">
+        <%= link_to 'Time to Answer', root_path, class:"navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <%= form_with(url: site_search_path, local: true, method: :get, class:"d-flex") do |form| %>
+          <%= form.text_field :term, class:"form-control me-2", placeholder:"Digite aqui..."  %>
+          <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+        <% end %>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav"></ul>
+        </div>
+        <ul class="nav nav-pills justify-content-end" id="pills-tab">
+          <% unless user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Entrar", new_user_session_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Cadastrar-se", new_user_registration_path, class:"nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" style="list-style: none; color: black" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+              
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                  <%= link_to users_backoffice_welcome_index_path, class:"dropdown-item" do %>
+                    <i class="fa fa-user"></i> Painel
+                  <% end %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item" do %>
+                    <i class="fa fa-sign-out fa-fw"></i> Sair
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
       </nav>
+      
 
-  
+      <!-- Main component for a primary marketing message or call to action -->
+      
 
-   <%= yield %>
-   
+      <%= yield %>
     </div> <!-- /container -->
+
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'site' %>
 
     <% if notice %>
       <%= javascript_tag do %>
-          $.bootstrapGrowl('<%= notice %>', {
-          type: 'success',
-          align: 'right',
-          allow_dismiss: true,
-          stackup_spacing: 10
-          });
+        $.bootstrapGrowl("<%= notice %>", {
+        type: 'success', // (null, 'info', 'danger', 'success')
+        align: 'right', // ('left', 'right', or 'center')
+        allow_dismiss: true, // If true then will display a cross to close the popup.
+        stackup_spacing: 10 // spacing between consecutively stacked growls.
+        });
       <% end %>
     <% end %>
-    
+
+    <%# <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> %>
   </body>
 </html>
+

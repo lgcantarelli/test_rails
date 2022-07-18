@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -11,8 +11,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application' %>
-    <%= stylesheet_link_tag    'users_backoffice' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'users_backoffice' %>
 
   </head>
 
@@ -22,7 +22,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Painel do Usuário</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -30,39 +30,40 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <%= link_to image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"imgAvatarMd"), '#', "data-toggle":"modal", "data-target": "#avatarModal"%>
+                <%= link_to image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"img-avatar-md"), '#', "data-toggle":"modal", "data-target":"#exampleModal" %>
               </div>
               <div class="profile_info">
-                <span>Seja bem vindo,</span>
+                <span>Seja bem-vindo,</span>
                 <h2><%= current_user.full_name %></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
-          
-
             <br />
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <ul class="nav side-menu">                  
+                <h3>General</h3>
+                <ul class="nav side-menu">
                   <li>
-                    <%= link_to users_backoffice_welcome_index_path do %>
-                      <i class="fa fa-home"></i> Início
-                    <% end %>
+                   <%= link_to users_backoffice_welcome_index_path do %>
+                    <i class="fa fa-home"></i> <strong> Início </strong>
+                   <% end %>
                   </li>
                   <li>
-                    <%= link_to users_backoffice_profile_path do %>
-                      <i class="fa fa-user"></i> Dados do perfil
-                    <% end %>
+                   <%= link_to users_backoffice_profile_path do %>
+                    <i class="fa fa-user"></i> <strong>Dados do perfil</strong>
+                   <% end %>
                   </li>
                   <li>
-                    <%= link_to users_backoffice_tests_path do %>
-                      <i class="fa fa-user"></i> Avaliações
+                    <%= link_to  users_backoffice_tests_path do %>
+                      <i class="fa fa-check"></i> Provas</span>
                     <% end %>
                   </li>
+                  
                 </ul>
               </div>
+              
 
             </div>
             <!-- /sidebar menu -->
@@ -88,107 +89,99 @@
 
         <!-- top navigation -->
         <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <%= image_tag avatar_url, alt:'', id:"imgAvatarLg" %>
-                    <%= current_user.email %>
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li>
-                      <%= link_to destroy_user_session_path, method: :delete do %>
-                        <i class="fa fa-sign-out pull-right"></i>
-                        Sair
+            <div class="nav_menu">
+                <div class="nav toggle">
+                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                <ul class=" navbar-right">
+                  <li class="nav-item dropdown open" style="padding-left: 15px;">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                      <%= image_tag avatar_url, alt:"", id:"img-avatar-sm" %>
+                      <%= current_user.email %>
+                    </a>
+                    
+                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                      <%= link_to destroy_user_session_path, class:"dropdown-item", method: :delete do %>
+                        <i class="fa fa-sign-out pull-right"></i> Sair
                       <% end %>
-                    </li>
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li> 
-                      <a>
-                        <span class="image">
-                          <%= image_tag avatar_url, alt:"Profile Image" %>
-                        </span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                          <%= image_tag avatar_url, alt:"Profile Image" %>
-                        </span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                          <%= image_tag avatar_url, alt:"Profile Image" %>
-                        </span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image">
-                          <%= image_tag avatar_url, alt:"Profile Image" %>
-                        </span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
+                    </div>
+                  </li>
+  
+                  <li role="presentation" class="nav-item dropdown open">
+                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-envelope-o"></i>
+                      <span class="badge bg-green">6</span>
+                    </a>
+                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                      <li class="nav-item">
+                        <a class="dropdown-item">
+                          <span class="image"> <%= image_tag 'img.jpg', alt:"Profile Image" %> </span>
+                          <span>
+                            <span><%= current_user.email %></span>
+                            <span class="time">3 mins ago</span>
+                          </span>
+                          <span class="message">
+                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                          </span>
                         </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
+                      </li>
+                      <li class="nav-item">
+                        <a class="dropdown-item">
+                          <span class="image"> <%= image_tag 'img.jpg', alt:"Profile Image" %> </span>
+                          <span>
+                            <span><%= current_user.email %></span>
+                            <span class="time">3 mins ago</span>
+                          </span>
+                          <span class="message">
+                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="dropdown-item">
+                          <span class="image"> <%= image_tag 'img.jpg', alt:"Profile Image" %> </span>
+                          <span>
+                            <span><%= current_user.email %></span>
+                            <span class="time">3 mins ago</span>
+                          </span>
+                          <span class="message">
+                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="dropdown-item">
+                          <span class="image"><%= image_tag 'img.jpg', alt:"Profile Image" %></span>
+                          <span>
+                            <span><%= current_user.email %></span>
+                            <span class="time">3 mins ago</span>
+                          </span>
+                          <span class="message">
+                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                          </span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <div class="text-center">
+                          <a class="dropdown-item">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col " role="main">
+        <div class="right_col" role="main">
           <div class="">
-            <div class="page-title ">
+            <div class="page-title">
               <%= yield %>
             </div>
           </div>
@@ -206,48 +199,52 @@
       </div>
     </div>
 
-  <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
-        <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left") do |form| %>
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Avatar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= form.fields_for :user_profile do |profile_form| %>
-              <div class="form-group">
-                <%= profile_form.label :avatar %>
-                <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"imgAvatarLg") %>
-                <%= profile_form.file_field :avatar %>
+          <%= form_with(url: users_backoffice_profile_path, model: current_user, class:"form-horizontal form-label-left") do |form| %>
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Avatar</h5>
+              <button class="fa fa-close" style="outline: none; background-color: white; border: transparent" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
             </div>
-
-            <% end %>
-          </div>
-          <div class="modal-footer">
-            <%= form.submit "Salvar", class:"btn btn-primary"%>
-          </div>
-        <% end %>
+            <div class="modal-body">
+              <%= form.fields_for :user_profile do |profile_form| %>
+                <div class="item form-group" style="flex-direction: column;">
+                  <%= profile_form.label :avatar  %>
+                  <%= image_tag(avatar_url, alt:"...", class:"img-circle profile_img", id:"img-avatar-lg") %>
+                  <%= profile_form.file_field :avatar %>
+                </div>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <%= form.submit "Salvar alterações", class:"btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
+    <!-- /MODAL -->
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'users_backoffice' %>
 
-    <% if notice %>
-        <%= javascript_tag do %>
-            $.bootstrapGrowl('<%= notice %>', {
-            type: 'success',
-            align: 'right',
-            allow_dismiss: true,
-            stackup_spacing: 10
-            });
-        <% end %>
+  <% if notice %>
+    <%= javascript_tag do %>
+      $.bootstrapGrowl("<%= notice %>", {
+      type: 'success', // (null, 'info', 'danger', 'success')
+      align: 'right', // ('left', 'right', or 'center')
+      allow_dismiss: true, // If true then will display a cross to close the popup.
+      stackup_spacing: 10 // spacing between consecutively stacked growls.
+      });
     <% end %>
+  <% end %>
 
+  <%= javascript_tag do %>
+    $(function(){
+      $('.datepicker').datepicker();
+    })
+  <% end %>
     
   </body>
 </html>
