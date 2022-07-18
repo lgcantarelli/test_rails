@@ -2,13 +2,6 @@
 
 <h2 class="display-2"><%= @final_grade.round(2) %></h2>
 
-<% if (@final_grade > 7) %>
-  <h3>Parabêns! Você foi aprovado na avaliação!</h3>
-<% end %>
-<% unless %>
-  <h3>Você reprovou</h3>
-<% end %>
-
 <hr>
 
 <%= link_to "Ver respostas", "#{users_backoffice_path}/show", class:"btn btn-primary" %>

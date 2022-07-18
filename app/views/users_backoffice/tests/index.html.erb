@@ -30,9 +30,9 @@
           </td>
           <td>
             <% if @grades.keys.include?(test.id) %>
-              <p class="<%= @grades[test.id] >= 7 ? 'btn btn-outline-success w-25 cursor-pointer' : 'btn btn-outline-danger w-25' %>" style="cursor: default">
+              <h5 class="<%= @grades[test.id] >= 7 ? 'text-success' : 'text-danger' %>">
                 <%= @grades[test.id].round(2) %>
-              </p>
+              </h5>
            
               <% else %>
                 -

@@ -1,5 +1,17 @@
-<div>
-  <h3> <%= @test.name %> </h3>
+
+<div class="x_title" style="width: 100%">
+<h3> <%= @test.name %> </h3>
+  <h1>
+    <sub>
+      <small class="btn <%= @final_grade <= 5 ? 'btn-danger' : 'btn-success' %> btn-sm" style="border: transparent">
+        Nota: <%= @final_grade.to_int  %>
+      </small> 
+      <small class="btn btn-info btn-sm" style="border: transparent">
+        Respostas corretas <%= @corrects.size  %> de <%= @myCrazyHash.size %>
+      </small>
+    </sub>
+  </h1>
+  <div class="clearfix"></div>
 </div>
 
 <%= form_with url: users_backoffice_path, local: true do |form| %>
