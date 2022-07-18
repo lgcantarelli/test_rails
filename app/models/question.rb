@@ -9,10 +9,9 @@ class Question < ApplicationRecord
 
   paginates_per 5
 
-  #callback 
+
   after_create :set_statistic
 
-  #para querys no DB
   scope :_search_subject_, ->(page, subject_id){
     Question.includes(:answers, :subject).where(subject_id: subject_id).page(page)
   }

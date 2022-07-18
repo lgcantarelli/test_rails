@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -9,12 +7,8 @@ class User < ApplicationRecord
   has_many :tests, through: :user_tests
   accepts_nested_attributes_for :user_profile, reject_if: :all_blank
 
-  # callback do activerecord
-
   after_create :set_statistic
 
-
-  #validations
   validates :first_name, presence: true, length: { minimum: 2 }, on: :update
 
   def full_name

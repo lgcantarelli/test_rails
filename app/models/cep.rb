@@ -31,5 +31,3 @@ class CEP
     )
   end
 end
-
-# CEP.new("96010630")
